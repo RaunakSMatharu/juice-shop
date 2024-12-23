@@ -1,0 +1,14 @@
+name: "CI Pipeline"
+on:
+  push:
+    branches:
+        - master
+
+jobs:
+    docker:
+        runs-on: ubuntu-latest
+        steps: 
+            - name: "install docker"
+            run: |
+                echo "hello this is a test run"
+                
