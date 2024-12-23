@@ -12,7 +12,16 @@ jobs:
     steps:
       - name: "checkout repository"
         uses: actions/checkout@v3
-
-      - name: "test pipeline"
-        run: |
-          echo "hello this is a test run"
+      
+      - name: Docker Login
+        uses: docker/login-action@v3.3.0
+        with:
+          username:  ${{ secrets.DOCKER_USERNAME }} 
+          password: ${{ secrets.DOCKER_PASSWORD }} 
+          
+      - name: "Build and push Docker images"
+        uses: docker/build-push-action@v2 # Updated to version 2 for modern syntax
+        with:
+          push: true
+          tags: rm1100/juice-shope:latest 
+      
