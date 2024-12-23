@@ -3,12 +3,16 @@ name: "CI Pipeline"
 on:
   push:
     branches:
-      - master
+      - master 
+  workflow_dispatch:   
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: "Install Docker"
+      - name: "checkout repository"
+        uses: actions/checkout@v3
+
+      - name: "test pipeline"
         run: |
           echo "hello this is a test run"
