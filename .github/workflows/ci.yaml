@@ -8,10 +8,23 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v3
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4.0.2
+        with:
+          path: ~/.sonar/cache
+          key: sonar-cache-${{ hashFiles('**/pom.xml') }}
+          restore-keys: sonar-cache-
 
       - name: SonarQube Cloud Scan
         uses: SonarSource/sonarcloud-github-action@v4.0.0
