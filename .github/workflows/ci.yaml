@@ -14,13 +14,17 @@ jobs:
         uses: actions/checkout@v3
 
       - name: SonarQube Cloud Scan
-        uses: SonarSource/sonarcloud-github-action@v4.0.0
+        uses: SonarSource/sonarqube-scan-action@v4.2.1
         with:
           args: >
             -Dsonar.organization=raunaksmatharu
             -Dsonar.projectKey=RaunakSMatharu_juice-shop
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: sonar cube quality gate badge
+        run: |
+            echo "## SonarQube Scan" >>  $GITHUB_STEP_SUMMARY
+            echo "[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=RaunakSMatharu_juice-shop)](https://sonarcloud.io/summary/new_code?id=RaunakSMatharu_juice-shop)" >> $GITHUB_STEP_SUMMARY
 
   docker-build:
     runs-on: ubuntu-latest
