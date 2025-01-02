@@ -70,6 +70,9 @@ jobs:
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v3
+      
+      - name: Change Directory
+        run: cd terraform  # Change to your Terraform files directory
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
@@ -89,4 +92,3 @@ jobs:
 
       - name: Output Terraform Outputs
         run: echo "The outputs are ${{ steps.apply.outputs }}"
-
