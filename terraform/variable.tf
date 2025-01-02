@@ -1,14 +1,14 @@
 variable "location" {
   description = "location for azure region"
-  default = "eastus"
+  default     = "eastus"
 }
 
-variable "workload"{
-    description = "workload"
-    default = "raunakdevsecops"
+variable "workload" {
+  description = "workload"
+  default     = "raunakdevsecops"
 }
 
-variable "env"{
-    description = "environement for work"
-    default = "test"
+variable "env" {
+  description = "environement for work"
+  default     = "test"
 }

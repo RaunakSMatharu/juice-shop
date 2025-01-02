@@ -2,7 +2,7 @@
 module "naming" {
   source  = "Azure/naming/azurerm"
   version = "0.4.2"
-  suffix = [var.workload, var.env, var.location]
+  suffix  = [var.workload, var.env, var.location]
 }
 
 resource "azurerm_resource_group" "test" {
@@ -29,7 +29,7 @@ module "counting" {
         memory = "0.5Gi"
         cpu    = 0.25
         image  = "rm1100/juice-shop:12472955141"
-       
+
       },
     ]
   }
