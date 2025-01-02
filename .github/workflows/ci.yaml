@@ -83,3 +83,5 @@ jobs:
                          -backend-config="workspaces.name=${{ secrets.TF_WORKSPACE }}"
           terraform apply -auto-approve
         working-directory: ./terraform
+        env:
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
