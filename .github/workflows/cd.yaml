@@ -15,24 +15,25 @@ jobs:
       TF_HOME: ${{ github.workspace }}/terraform
       TF_WORKSPACE: dev
       TF_VAR_docker_image: rm1100/juice-shop:${{ github.run_id }}
-    
-    steps:
-    - name: "Checkout repository"
-      uses: actions/checkout@v3x
-    
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: "1.10.0" # specify your required version
-        cli_config_credentials_token:  ${{ secrets.TF_API_TOKEN }}
 
-    - name: Terraform Init and Apply
-      run: |
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.10.0"  # Specify your required version
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Init and Apply
+        run: |
           cd ./terraform
           terraform init
           terraform apply -auto-approve -var-file="dev.tfvars"
           cd -
         env:
           TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
 
 
