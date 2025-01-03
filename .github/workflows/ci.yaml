@@ -80,9 +80,9 @@ jobs:
           cli_config_credentials_token:  ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Format Check
-        if: false # Something strange is happening with this step, so I'm disabling it for now
+        #if: false # Something strange is happening with this step, so I'm disabling it for now
         run: |
-          echo "Running Terraform Format check in the following directory: $TF_HOME"
+          echo "Running Terraform Format check in the following directory: ./terraform"
           cd ./terraform
           output=$(terraform fmt)
           if [ -z "$output" ]; then
