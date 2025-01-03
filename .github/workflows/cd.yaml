@@ -30,6 +30,7 @@ jobs:
         run: |
           cd ./terraform
           terraform init
+          ls
           terraform apply -auto-approve -var-file="dev.tfvars"
           cd -
         env:
