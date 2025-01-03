@@ -1,0 +1,32 @@
+name: 02 CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["01 CI Pipeline"]
+    types:
+      - completed
+
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and Test
+        run: |
+          echo "Building and testing in Development environment..."
+          # Add your build and test scripts here
+
+  production:
+    needs: dev
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Production
+        run: |
+          echo "Deploying to production environment..."
+          # Add your deployment scripts here

@@ -27,7 +27,7 @@ module "counting" {
         name   = "countingservicetest1"
         memory = "0.5Gi"
         cpu    = 0.25
-        image  = "rm1100/juice-shop:12472955141"
+        image  = var.docker_image
 
       },
     ]

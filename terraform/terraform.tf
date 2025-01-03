@@ -8,11 +8,6 @@ terraform {
   }
 
   cloud {
-
     organization = "raunak-devsecops"
-
-    workspaces {
-      name = "test"
-    }
   }
 }
