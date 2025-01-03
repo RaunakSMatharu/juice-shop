@@ -3,6 +3,7 @@ name: 02 CD Pipeline
 on:
   workflow_run:
     workflows: ["01 CI Pipeline"]
+    branches: [master]
     types:
       - completed
 
@@ -19,9 +20,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: terraform
-          path: |
-              terraform/**/*.tf
-              terraform/**/*.tfvars
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
