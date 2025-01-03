@@ -1,2 +1,2 @@
-location=eastus
-env=dev
+location = "eastus"
+env = "dev"
