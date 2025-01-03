@@ -1,2 +1,0 @@
-location=eastus
-env=test
