@@ -123,10 +123,10 @@ jobs:
           sarif_file: 'trivy-results.sarif'
 
       - name: Upload Terraform Artifact
-          uses: actions/upload-artifact@v4
-          with:
-            name: terraform
-            path: |
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform
+          path: |
               terraform/**/*.tf
               terraform/**/*.tfvars
               !terraform/.terraform/**
