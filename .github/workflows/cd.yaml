@@ -28,13 +28,14 @@ jobs:
 
       - name: Terraform Init and Apply
         run: |
-          cd ./terraform
-          terraform init
-          ls
-          terraform apply -auto-approve -var-file="variables/dev.tfvars"
-          cd -
+            cd ./terraform
+            terraform init
+            ls  # This line is optional, just to list files for debugging
+            terraform apply -auto-approve \
+            -var-file="variables/dev.tfvars" \
+            -var="docker_image=rm1100/juice-shop:${{ github.run_id }}"
         env:
-          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+            TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
 
 
 
