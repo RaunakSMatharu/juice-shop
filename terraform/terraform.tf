@@ -9,5 +9,9 @@ terraform {
 
   cloud {
     organization = "raunak-devsecops"
+    #below value is passed as TF_WORKSPACE env variable
+    # workspaces {
+    #   name = "test"
+    # }
   }
 }

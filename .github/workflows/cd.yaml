@@ -9,14 +9,32 @@ on:
 jobs:
   dev:
     runs-on: ubuntu-latest
+    env:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+      TF_HOME: ${{ github.workspace }}/terraform
+      TF_WORKSPACE: dev
+      TF_VAR_docker_image: rm1100/juice-shop:${{ github.run_id }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Download CI Terraform Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: terraform
 
-      - name: Build and Test
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.10.0" # Specify your required version
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Init and Apply
         run: |
-          echo "Building and testing in Development environment..."
-          # Add your build and test scripts here
+          cd ${{ env.TF_HOME }}
+          terraform init
+          terraform validate
+          terraform apply -auto-approve -var-file="prod.tfvars"
+        env:
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
 
   production:
     needs: dev
