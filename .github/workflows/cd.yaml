@@ -16,9 +16,12 @@ jobs:
       TF_VAR_docker_image: rm1100/juice-shop:${{ github.run_id }}
     steps:
       - name: Download CI Terraform Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.8
         with:
           name: terraform
+          path: |
+              terraform/**/*.tf
+              terraform/**/*.tfvars
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
