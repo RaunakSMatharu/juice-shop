@@ -31,7 +31,7 @@ jobs:
           cd ./terraform
           terraform init
           ls
-          terraform apply -auto-approve -var-file="dev.tfvars"
+          terraform apply -auto-approve -var-file="variables/dev.tfvars"
           cd -
         env:
           TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}

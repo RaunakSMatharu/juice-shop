@@ -9,7 +9,7 @@ on:
 jobs:
   sonartest:
     runs-on: ubuntu-latest
-    if: false #temp disable the job to work 
+    #if: false #temp disable the job to work 
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v3
@@ -29,7 +29,7 @@ jobs:
 
   docker-build:
     runs-on: ubuntu-latest
-    if: false #temp disable the job to work 
+    #if: false #temp disable the job to work 
     
     steps:
       - name: "Checkout repository"
