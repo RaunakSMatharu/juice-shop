@@ -69,6 +69,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
         TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+        TF_HOME: ${{ github.workspace }}/terraform
+        TF_WORKSPACE: test
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -99,9 +101,32 @@ jobs:
           cd ./terraform
           terraform init
           terraform validate
-          terraform plan
           cd -
         env:
           TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
-          TF_LOG: DEBUG
-       
+          
+      - name: Run Trivy vulnerability scanner in IaC mode
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-ref: ${{ env.TF_HOME }}
+          scan-type: 'config'
+          hide-progress: true
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        if: always() # Should run even if the previous step fails
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: Upload Terraform Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform
+          # Upload all .tf and .tfvars file in the terraform home, except .terraform directory
+          path: |
+            ${{env.TF_HOME}}/**/*.tf*
+            !${{env.TF_HOME}}/.terraform
