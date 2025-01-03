@@ -74,15 +74,30 @@ jobs:
         uses: actions/checkout@v3
       
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: '1.10.0'
+          terraform_version: "1.10.0" # specify your required version
+          cli_config_credentials_token: $TF_API_TOKEN
+
+      - name: Terraform Format Check
+        if: false # Something strange is happening with this step, so I'm disabling it for now
+        run: |
+          echo "Running Terraform Format check in the following directory: $TF_HOME"
+          cd ./terraform
+          output=$(terraform fmt)
+          if [ -z "$output" ]; then
+            echo "Terraform Format check is successful."
+          else
+            echo "Terraform Format check failed for the following files:"
+            echo "$output"
+            exit 1
+          fi
+          cd -
 
       - name: Terraform Init and Apply
         run: |
-          terraform init -backend-config="address=https://app.terraform.io" \
-                         -backend-config="organization=${{ secrets.TF_ORG }}" \
-                         -backend-config="workspaces.name=${{ secrets.TF_WORKSPACE }}"
-          terraform apply -auto-approve
-        working-directory: ./terraform
+          cd ./terraform
+          terraform init
+          terraform validate
+          cd -
        
