@@ -99,6 +99,7 @@ jobs:
           cd ./terraform
           terraform init
           terraform validate
+          terraform plan
           cd -
         env:
           TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
