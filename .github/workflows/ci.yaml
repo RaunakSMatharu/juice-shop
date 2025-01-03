@@ -1,4 +1,4 @@
-name: "01 CI Pipeline"
+name: "01_CI_Pipeline"
 
 on:
   push:
