@@ -77,7 +77,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.10.0" # specify your required version
-          cli_config_credentials_token: $TF_API_TOKEN
+          cli_config_credentials_token:  ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Format Check
         if: false # Something strange is happening with this step, so I'm disabling it for now
@@ -100,4 +100,7 @@ jobs:
           terraform init
           terraform validate
           cd -
+        env:
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+          TF_LOG: DEBUG
        
