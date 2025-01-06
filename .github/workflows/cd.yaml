@@ -19,7 +19,7 @@ jobs:
 
       - name: "Custom Terraform Provisioning for Dev Environment"
         id: terrform_provision
-        uses: ./.github/actions/terrform_provision
+        uses: ./.github/actions/terrform_provision/terraform_provision.yaml
         with:
           terraform_version: "1.10.0"
           tf_workspace: "dev"
