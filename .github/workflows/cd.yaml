@@ -20,7 +20,7 @@ jobs:
 
       - name: "Display action file contents"
         run: cat ./.github/actions/terrform_provision/action.yaml
-        
+
       - name: "Custom Terraform Provisioning for Dev Environment"
         id: terraform_provision
         uses: ./.github/actions/terrform_provision
@@ -28,3 +28,4 @@ jobs:
             terraform_version: "1.10.0"
             tf_workspace: "dev"
             docker_image: "${{ env.DOCKER_USERNAME }}/juice-shop:latest"
+            tf_api_token: "${{ secrets.TF_API_TOKEN }}"
