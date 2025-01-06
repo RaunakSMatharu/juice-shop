@@ -6,10 +6,11 @@ on:
     branches: [master]
     types:
       - completed
-
 jobs:
   provision:
     runs-on: ubuntu-latest
+    env:
+      DOCKER_USERNAME: rm1100  # Set your Docker username here or make sure it's set as an environment variable if dynamic
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v3
@@ -19,15 +20,8 @@ jobs:
 
       - name: "Custom Terraform Provisioning for Dev Environment"
         id: terrform_provision
-        uses: ./.github/actions/terrform_provision/terraform_provision.yaml
+        uses: ./.github/actions/terrform_provision/action.yaml
         with:
           terraform_version: "1.10.0"
           tf_workspace: "dev"
-          docker_image: "${{ vars.DOCKER_USERNAME }}/juice-shop:latest"
-
-      - name: "Custom Terraform Provisioning for Test Environment"
-        uses: ./.github/actions/terrform_provision/terraform_provision.yaml
-        with:
-          terraform_version: "1.10.0"
-          tf_workspace: "test"
-          docker_image: "${{ vars.DOCKER_USERNAME }}/juice-shop:latest"
+          docker_image: "${{ env.DOCKER_USERNAME }}/juice-shop:latest"
