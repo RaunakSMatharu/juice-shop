@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_USERNAME: rm1100  # Set your Docker username here
-      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}  # Set Terraform API Token as an environment variable
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }} # Set Terraform API Token as an environment variable
 
     steps:
       - name: "Checkout repository"
