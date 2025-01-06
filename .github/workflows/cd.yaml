@@ -17,14 +17,14 @@ jobs:
 
       - name: "Check .github directory contents"
         run: ls -la ./.github/actions/terrform_provision
-        
+
       - name: "Display action file contents"
         run: cat ./.github/actions/terrform_provision/action.yaml
-
+        
       - name: "Custom Terraform Provisioning for Dev Environment"
-        id: terrform_provision
-        uses: ./.github/actions/terrform_provision/action.yaml
+        id: terraform_provision
+        uses: ./.github/actions/terrform_provision
         with:
-          terraform_version: "1.10.0"
-          tf_workspace: "dev"
-          docker_image: "${{ env.DOCKER_USERNAME }}/juice-shop:latest"
+            terraform_version: "1.10.0"
+            tf_workspace: "dev"
+            docker_image: "${{ env.DOCKER_USERNAME }}/juice-shop:latest"
