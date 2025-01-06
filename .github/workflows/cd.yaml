@@ -18,11 +18,15 @@ jobs:
       - name: "Checkout repository"
         uses: actions/checkout@v3
 
-      - name: "Check .github directory contents"
-        run: ls -la ./.github/actions/terrform_provision
+      - name: "Custom Terraform Provisioning for test Environment"
+        id: terraform_provision
+        uses: ./.github/actions/terrform_provision
+        with:
+            terraform_version: "1.10.0"
+            tf_workspace: "test"
+            docker_image: "${{ env.DOCKER_USERNAME }}/juice-shop:latest"
+            tf_api_token: "${{ env.TF_API_TOKEN }}"
 
-      - name: "Display action file contents"
-        run: cat ./.github/actions/terrform_provision/action.yaml
 
       - name: "Custom Terraform Provisioning for Dev Environment"
         id: terraform_provision
