@@ -34,7 +34,7 @@ jobs:
             terraform apply -auto-approve \
             -var-file="variables/dev.tfvars" \
             -var="docker_image=${{ vars.DOCKER_USERNAME }}/juice-shop:latest"
-         env:
+        env:
             TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
 
 
