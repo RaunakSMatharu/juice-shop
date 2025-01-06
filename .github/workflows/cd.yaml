@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy_dev:
-    uses: .github/actions/terraform_provision_Custom_action.yaml
+    uses: .github/actions/terraform_provision_Custom_action.yaml@master
     with:
       terraform_version: "1.10.0"
       tf_workspace: dev
