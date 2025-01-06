@@ -7,23 +7,13 @@ on:
     types:
       - completed
 
-jobs:
-  provision:
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v3
+steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: "Custom Terraform Provisioning for Dev Environment"
-        uses: ./.github/workflows/terraform_provision_Custom_action.yaml@master
-        with:
-          terraform_version: "1.10.0"
-          tf_workspace: "dev"
-          docker_image: "${{ secrets.DOCKER_USERNAME }}/juice-shop:latest"
-
-      - name: "Custom Terraform Provisioning for Test Environment"
-        uses: ./.github/workflows/terraform_provision_Custom_action.yaml@master
-        with:
-          terraform_version: "1.10.0"
-          tf_workspace: "test"
-          docker_image: "${{ secrets.DOCKER_USERNAME }}/juice-shop:latest"
+    - name: Custom Terraform Provisioning
+      uses: ./.github/workflows/terraform_provision_Custom_action.yaml@master
+      with:
+        terraform_version: "1.10.0"
+        tf_workspace: dev
+        docker_image: "${{ secrets.DOCKER_USERNAME }}/juice-shop:latest"
