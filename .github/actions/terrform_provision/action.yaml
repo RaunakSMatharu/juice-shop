@@ -26,7 +26,7 @@ runs:
     - name: Terraform Init and Apply
       run: |
           cd ./terraform
-          export TF_WORKSPACE="${{ inputs.workspace }}"
+          export TF_WORKSPACE="${{ inputs.tf_workspace }}"
           terraform init
           terraform apply -auto-approve \
           -var-file="variables/${{ inputs.tf_workspace }}.tfvars" \
