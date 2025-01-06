@@ -41,19 +41,19 @@ jobs:
       - name: "Docker Login"
         uses: docker/login-action@v3.3.0
         with:
-          username: rm1100
+          username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: "Build Docker image"
         uses: docker/build-push-action@v2
         with:
           push: false
-          tags: rm1100/juice-shop:${{ github.run_id }}
+          tags: ${{ vars.DOCKER_USERNAME }}/juice-shop:latest  #${{ github.run_id }}
 
       - name: "Docker Scout"
         uses: docker/scout-action@v1.16.1
         with:
-          image-name: "rm1100/juice-shop:${{ github.run_id }}"
+          image-name: "${{ vars.DOCKER_USERNAME }}/juice-shop:latest" #${{ github.run_id }}
           command: "quickview"
           only-severities: critical,high
           exit-code: true
@@ -63,7 +63,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: rm1100/juice-shop:${{ github.run_id }}
+          tags: ${{ vars.DOCKER_USERNAME }}/juice-shop:latest #${{ github.run_id }}
 
   terraform-deploy:
     runs-on: ubuntu-latest

@@ -14,7 +14,7 @@ jobs:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
       TF_HOME: ${{ github.workspace }}/terraform
       TF_WORKSPACE: dev
-      TF_VAR_docker_image: rm1100/juice-shop:${{ github.run_id }}
+      #TF_VAR_docker_image: ${{ vars.DOCKER_USERNAME }}/juice-shop:latest    #${{ github.run_id }}
 
     steps:
       - name: "Checkout repository"
@@ -33,8 +33,7 @@ jobs:
             ls  # This line is optional, just to list files for debugging
             terraform apply -auto-approve \
             -var-file="variables/dev.tfvars" \
-            -var="docker_image=rm1100/juice-shop:${{ github.run_id }}"
-        env:
+            -var="docker_image=${{ vars.DOCKER_USERNAME }}/juice-shop:latest"
             TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
 
 
