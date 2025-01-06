@@ -8,6 +8,14 @@ on:
       - completed
 
 jobs:
+  deploy_dev:
+    uses: .github/actions/terraform_provision_Custom_action.yaml
+    with:
+      terraform_version: "1.10.0"
+      tf_workspace: dev
+      docker_image: "${{ secrets.DOCKER_USERNAME }}/juice-shop:latest"
+{# 
+jobs:
   dev:
     runs-on: ubuntu-latest
     env:
@@ -38,4 +46,4 @@ jobs:
             TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
 
 
-
+ #}
