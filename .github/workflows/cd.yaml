@@ -18,14 +18,14 @@ jobs:
         run: ls -la ./.github/actions/terrform_provision
 
       - name: "Custom Terraform Provisioning for Dev Environment"
-        uses: ./.github/actions/terrform_provision
+        uses: ./.github/actions/terrform_provision/terraform_provision.yaml
         with:
           terraform_version: "1.10.0"
           tf_workspace: "dev"
           docker_image: "${{ secrets.DOCKER_USERNAME }}/juice-shop:latest"
 
       - name: "Custom Terraform Provisioning for Test Environment"
-        uses: ./.github/actions/terrform_provision
+        uses: ./.github/actions/terrform_provision/terraform_provision.yaml
         with:
           terraform_version: "1.10.0"
           tf_workspace: "test"
