@@ -16,16 +16,16 @@ jobs:
 
       - name: "Check .github directory contents"
         run: ls -la .github
-        
+
       - name: "Custom Terraform Provisioning for Dev Environment"
-        uses: ./.github/actions/
+        uses: ./.github/actions/terrform_provision
         with:
           terraform_version: "1.10.0"
           tf_workspace: "dev"
           docker_image: "${{ secrets.DOCKER_USERNAME }}/juice-shop:latest"
 
       - name: "Custom Terraform Provisioning for Test Environment"
-        uses: ./.github/actions/
+        uses: ./.github/actions/terrform_provision
         with:
           terraform_version: "1.10.0"
           tf_workspace: "test"
