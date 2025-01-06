@@ -1,0 +1,2 @@
+location= "westus"
+env= "test"
