@@ -17,6 +17,9 @@ jobs:
 
       - name: "Check .github directory contents"
         run: ls -la ./.github/actions/terrform_provision
+        
+      - name: "Display action file contents"
+        run: cat ./.github/actions/terrform_provision/action.yaml
 
       - name: "Custom Terraform Provisioning for Dev Environment"
         id: terrform_provision
