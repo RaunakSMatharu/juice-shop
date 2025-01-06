@@ -14,36 +14,3 @@ jobs:
       terraform_version: "1.10.0"
       tf_workspace: dev
       docker_image: "${{ secrets.DOCKER_USERNAME }}/juice-shop:latest"
-{# 
-jobs:
-  dev:
-    runs-on: ubuntu-latest
-    env:
-      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
-      TF_HOME: ${{ github.workspace }}/terraform
-      TF_WORKSPACE: dev
-      #TF_VAR_docker_image: ${{ vars.DOCKER_USERNAME }}/juice-shop:latest    #${{ github.run_id }}
-
-    steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v3
-
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: "1.10.0"  # Specify your required version
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-      - name: Terraform Init and Apply
-        run: |
-            cd ./terraform
-            terraform init
-            ls  # This line is optional, just to list files for debugging
-            terraform apply -auto-approve \
-            -var-file="variables/dev.tfvars" \
-            -var="docker_image=${{ vars.DOCKER_USERNAME }}/juice-shop:latest"
-        env:
-            TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
-
-
- #}
