@@ -27,7 +27,6 @@ jobs:
             docker_image: "${{ env.DOCKER_USERNAME }}/juice-shop:${{ github.event.inputs.ci_run_id }}"
             tf_api_token: "${{ env.TF_API_TOKEN }}"
 
-
       - name: "Check FQDN Output"
         run: echo "App FQDN is ${{ steps.terraform_provision.outputs.app_fqdn }}"
 

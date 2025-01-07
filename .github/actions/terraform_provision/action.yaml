@@ -36,8 +36,9 @@ runs:
           terraform apply -auto-approve \
           -var-file="variables/${{ inputs.tf_workspace }}.tfvars" \
           -var="docker_image=${{ inputs.docker_image }}"
-          echo "app_fqdn=$(terraform output -raw app_fqdn)" >> $GITHUB_OUTPUT
+          echo "app_fqdn=$(terraform outpupt -raw app_fqdn)" >> $GITHUB_OUTPUT
           cd -
+      shell: bash
       env:
         TF_API_TOKEN: ${{ inputs.tf_api_token }}
 
