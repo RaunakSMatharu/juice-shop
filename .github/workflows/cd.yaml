@@ -20,7 +20,7 @@ jobs:
 
       - name: "Custom Terraform Provisioning for test Environment"
         id: terraform_provision
-        uses: ./.github/actions/terrform_provision
+        uses: ./.github/actions/terraform_provision
         with:
             terraform_version: "1.10.0"
             tf_workspace: "test"
@@ -43,7 +43,7 @@ jobs:
 
 
       - name: "Custom Terraform Provisioning for Dev Environment"
-        uses: ./.github/actions/terrform_provision
+        uses: ./.github/actions/terraform_provision
         with:
             terraform_version: "1.10.0"
             tf_workspace: "dev"

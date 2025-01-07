@@ -40,7 +40,5 @@ runs:
       shell: bash
       env:
         TF_API_TOKEN: ${{ inputs.tf_api_token }}
-        
-    - name: Output FQDN
-      id: output_fqdn
-      run: echo "app_fqdn=$(terraform output -raw app_fqdn)" >> $GITHUB_ENV
+
+    
