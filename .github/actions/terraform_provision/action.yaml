@@ -29,6 +29,7 @@ runs:
         cli_config_credentials_token: ${{ inputs.tf_api_token }}
 
     - name: Terraform Init and Apply
+      id: provision
       run: |
           cd ./terraform
           export TF_WORKSPACE="${{ inputs.tf_workspace }}"
