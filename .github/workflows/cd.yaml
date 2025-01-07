@@ -27,8 +27,9 @@ jobs:
             docker_image: "${{ env.DOCKER_USERNAME }}/juice-shop:${{ github.event.inputs.ci_run_id }}"
             tf_api_token: "${{ env.TF_API_TOKEN }}"
 
-      - name: "Use Provisioned App FQDN"
-        run: echo 'The provisioned app FQDN is ${{ steps.terraform_provision.outputs.app_fqdn }}'
+      
+      - name: Display App FQDN
+        run: echo "The provisioned app FQDN is ${{ steps.terraform_provision.outputs.app_fqdn }}"
 
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.14.0
