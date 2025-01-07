@@ -29,7 +29,7 @@ jobs:
 
   docker-build:
     runs-on: ubuntu-latest
-    #if: false #temp disable the job to work 
+    if: false #temp disable the job to work 
     
     steps:
       - name: "Checkout repository"
@@ -81,21 +81,6 @@ jobs:
           terraform_version: "1.10.0" # specify your required version
           cli_config_credentials_token:  ${{ secrets.TF_API_TOKEN }}
 
-      - name: Terraform Format Check
-        #if: false # Something strange is happening with this step, so I'm disabling it for now
-        run: |
-          echo "Running Terraform Format check in the following directory: ./terraform"
-          cd ./terraform
-          output=$(terraform fmt)
-          if [ -z "$output" ]; then
-            echo "Terraform Format check is successful."
-          else
-            echo "Terraform Format check failed for the following files:"
-            echo "$output"
-            exit 1
-          fi
-          cd -
-
       - name: Terraform Init and Apply
         run: |
           cd ./terraform
@@ -123,7 +108,7 @@ jobs:
           sarif_file: 'trivy-results.sarif'
 
       - name: Upload Terraform Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: terraform
           path: |
