@@ -29,10 +29,9 @@ jobs:
 
       - name: "Check FQDN Output"
         run: echo "App FQDN is ${{ steps.terraform_provision.outputs.app_fqdn }}"
-        
+
       - name: "Use Provisioned App FQDN"
         run: echo "The provisioned app FQDN is ${{ steps.terraform_provision.outputs.app_fqdn }}"
-        In this snippet:
 
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.14.0
