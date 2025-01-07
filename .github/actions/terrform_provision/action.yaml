@@ -13,6 +13,11 @@ inputs:
   tf_api_token:
     description: "Terraform API token"
     required: true
+    
+outputs:
+  app_fqdn:
+    description: "Provisioned App FQDN."
+    value: ${{ steps.provision.outputs.app_fqdn }}
 
 runs:
   using: "composite"
