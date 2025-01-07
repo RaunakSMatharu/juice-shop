@@ -28,9 +28,6 @@ jobs:
             tf_api_token: "${{ env.TF_API_TOKEN }}"
 
       - name: "Use Provisioned App FQDN"
-        run: $steps.terraform_provision.outputs.app_fqdn 
-
-      - name: "Use Provisioned App FQDN"
         run: echo 'The provisioned app FQDN is ${{ steps.terraform_provision.outputs.app_fqdn }}'
 
       - name: ZAP Scan
