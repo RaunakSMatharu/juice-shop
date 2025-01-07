@@ -24,7 +24,7 @@ jobs:
         with:
             terraform_version: "1.10.0"
             tf_workspace: "test"
-            docker_image: "${{ env.DOCKER_USERNAME }}/juice-shop::${{ github.event.inputs.ci_run_id }}"
+            docker_image: "${{ env.DOCKER_USERNAME }}/juice-shop:${{ github.event.inputs.ci_run_id }}"
             tf_api_token: "${{ env.TF_API_TOKEN }}"
 
 

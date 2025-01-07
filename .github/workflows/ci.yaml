@@ -9,7 +9,7 @@ on:
 jobs:
   sonartest:
     runs-on: ubuntu-latest
-    if: false #temp disable the job to work 
+    #if: false #temp disable the job to work 
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v3
@@ -48,12 +48,12 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: false
-          tags: ${{ vars.DOCKER_USERNAME }}/juice-shop:latest  #${{ github.run_id }}
+          tags: "${{ vars.DOCKER_USERNAME }}/juice-shop:${{ github.run_id }}"
 
       - name: "Docker Scout"
         uses: docker/scout-action@v1.16.1
         with:
-          image-name: "${{ vars.DOCKER_USERNAME }}/juice-shop:latest" #${{ github.run_id }}
+          image-name: "${{ vars.DOCKER_USERNAME }}/juice-shop:${{ github.run_id }}"
           command: "quickview"
           only-severities: critical,high
           exit-code: true
@@ -63,7 +63,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ vars.DOCKER_USERNAME }}/juice-shop:latest #${{ github.run_id }}
+          tags: ${{ vars.DOCKER_USERNAME }}/juice-shop:${{ github.run_id }}
 
   terraform-deploy:
     runs-on: ubuntu-latest
