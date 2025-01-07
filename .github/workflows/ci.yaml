@@ -132,7 +132,7 @@ jobs:
               !terraform/.terraform/**
   trigger-cd:
     runs-on: ubuntu-24.04
-    needs: [sast, docker, terraform]
+    needs: [sonartest,  docker-build, terraform-deploy]
     steps:
       - name: "Trigger CD pipeline"
         uses: actions/github-script@v6
