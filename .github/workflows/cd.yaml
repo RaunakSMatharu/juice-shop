@@ -29,14 +29,17 @@ jobs:
 
       - name: "Check FQDN Output"
         run: echo "App FQDN is ${{ steps.terraform_provision.outputs.app_fqdn }}"
-
+        
+      - name: "Use Provisioned App FQDN"
+        run: echo "The provisioned app FQDN is ${{ steps.terraform_provision.outputs.app_fqdn }}"
+        In this snippet:
 
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.14.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
-          target:  "${{ steps.terraform_provision.outputs.app_fqdn }}"
+          target:  "https://ca-raunakdevsecops-test-westus.orangepebble-daa38c3a.westus.azurecontainerapps.io"
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
 
