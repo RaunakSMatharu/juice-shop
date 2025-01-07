@@ -5,5 +5,5 @@ output "rg_name" {
 
 output "app_fqdn" {
   description = "Fully Qualified Domain Name of the Application."
-  value       = module.ca.fqdn_url
+  value       = module.counting.fqdn_url
 }
